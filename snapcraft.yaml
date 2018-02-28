@@ -1,0 +1,38 @@
+name: qgis3
+version: 3.0.0
+summary: A Free and Open Source Geographic Information System
+description: |
+  Create, edit, visualise, analyse and publish geospatial information.
+  QGIS feels snappy to use and has a pleasing, easy to use graphical user
+  interface. It supports a number of raster and vector data formats, with new
+  support easily added using the plugin architectur
+
+grade: devel
+confinement: strict
+architectures: [amd64]
+
+apps:
+  qgis3:
+    command: desktop-launch qgis
+    plugs: [home, network, unity7]
+    environment:
+      GDAL_DATA: $SNAP/usr/share/gdal/2.2
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/libblas:$SNAP/usr/lib/lapack
+
+parts:
+  qgis3:
+    plugin: nil
+    after: [ desktop-qt5 ]
+    stage-packages:
+      - libqca-qt5-2-plugins
+      - qgis
+      - python-qgis
+      - qgis-plugin-grass
+      - saga
+      - python-saga
+    organize:
+      usr/lib/x86_64-linux-gnu/qca-qt5/crypto: usr/lib/x86_64-linux-gnu/qt5/plugins/crypto
+    stage:
+      - -include/
+      - -usr/share/doc
+
