@@ -1,5 +1,5 @@
 name: qgis
-version: 2.18.15
+version: 2.14.21
 summary: A Free and Open Source Geographic Information System
 description: |
   Create, edit, visualise, analyse and publish geospatial information.
@@ -16,11 +16,11 @@ apps:
     command: desktop-launch qgis
     plugs: [home, network, unity7]
     environment:
-      GDAL_DATA: $SNAP/usr/share/gdal/1.11
+      GDAL_DATA: $SNAP/usr/share/gdal/2.2
 
 parts:
   qgis:
-    source: https://github.com/qgis/QGIS/archive/final-2_18_15.tar.gz
+    source: https://github.com/qgis/QGIS/archive/final-2_14_21.tar.gz
     plugin: cmake
     after: [python-deps, desktop-qt4]
     build-packages:
