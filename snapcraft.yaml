@@ -1,5 +1,5 @@
 name: qgis
-version: 2.14.21
+version: 2.14.22
 summary: A Free and Open Source Geographic Information System
 description: |
   Create, edit, visualise, analyse and publish geospatial information.
@@ -17,12 +17,21 @@ apps:
     plugs: [home, network, unity7]
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
+  shell:
+    command: ipython
+    plugs: [home, network]
 
 parts:
   qgis:
-    source: https://github.com/qgis/QGIS/archive/final-2_14_21.tar.gz
+    source: https://github.com/qgis/QGIS/archive/final-2_14_22.tar.gz
     plugin: cmake
     after: [python-deps, desktop-qt4]
+    configflags:
+      - -DWITH_BINDINGS=TRUE
+      - -DWITH_PY_COMPILE=TRUE
+      - -DBINDINGS_GLOBAL_INSTALL=TRUE
+      - -DPYTHON_SITE_PACKAGES_DIR=/usr/lib/python2.7/dist-packages
+      - -DENABLE_TESTS=FALSE
     build-packages:
       - build-essential
       - bison
@@ -118,3 +127,9 @@ parts:
       - python-shapely
       - python-six
       - python-tz
+
+  python-shell:
+    plugin: python
+    python-version: python2
+    python-packages:
+      - ipython
