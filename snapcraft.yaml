@@ -19,7 +19,10 @@ apps:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
   shell:
     command: ipython
-    plugs: [home, network]
+    plugs: [home, network, unity7]
+    environment:
+      GDAL_DATA: $SNAP/usr/share/gdal/2.2
+      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
 
 parts:
   qgis:
