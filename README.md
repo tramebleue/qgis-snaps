@@ -1,9 +1,7 @@
-# QGIS snap
+# QGIS Snaps
 
 This project creates a working snap of QGIS (www.qgis.org).
 QGIS is a Geographic Information System (GIS) that supports vector, raster & database formats.
-
-Only AMD64 versions of QGis are currently available.
 
 ## Versions of QGis
 
@@ -14,6 +12,8 @@ Tagged versions of the Snapcraft configuration file :
 * [3.0 (Girona)](https://github.com/tramebleue/qgis-snaps/tree/3.0.0)
 * [2.18 (Las Palmas)](https://github.com/tramebleue/qgis-snaps/tree/2.18.15)
 * [2.14 (Essen)](https://github.com/tramebleue/qgis-snaps/tree/2.14.22)
+
+Only AMD64 versions of QGis are currently available.
 
 ## Building the snap
 
