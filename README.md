@@ -1,12 +1,19 @@
 # QGIS snap
 
 This project creates a working snap of QGIS (www.qgis.org).
-QGIS is a Geographic Information System (GIS) that supports vector, raster & database formats
+QGIS is a Geographic Information System (GIS) that supports vector, raster & database formats.
 
-## Current state
+Only AMD64 versions of QGis are currently available.
 
-* Only amd64
-* Working QCA OpenSSL - fixed `Authentication System: DISABLED` message 
+## Versions of QGis
+
+Tagged versions of the Snapcraft configuration file :
+
+* [3.4 (Madeira)](https://github.com/crousson/qgis-snaps/tree/3.4.3)
+* [3.2 (Bonn)](https://github.com/crousson/qgis-snaps/tree/3.2.2)
+* [3.0 (Girona)](https://github.com/crousson/qgis-snaps/tree/3.0.0)
+* [2.18 (Las Palmas)](https://github.com/crousson/qgis-snaps/tree/2.18.15)
+* [2.14 (Essen)](https://github.com/crousson/qgis-snaps/tree/2.14.22)
 
 ## Building the snap
 
@@ -16,6 +23,6 @@ For a clean, system independent build it is recommanden to use the official `sna
 Using Docker, you’ll map the current directory into the container and then build the snap from that same directory:
 
 ```
-docker pull snapcore/snapcraft
-docker run -v $PWD:$PWD -w $PWD snapcore/snapcraft bash -c "apt update && apt upgrade -y && snapcraft clean && snapcraft"
+docker build -t snapcraft-ubuntugis .
+docker run -v $PWD:$PWD -w $PWD snapcraft-ubuntugis bash -c "apt update && apt upgrade -y && snapcraft clean && snapcraft"
 ```
