@@ -9,11 +9,11 @@ Only AMD64 versions of QGis are currently available.
 
 Tagged versions of the Snapcraft configuration file :
 
-* [3.4 (Madeira)](https://github.com/crousson/qgis-snaps/tree/3.4.3)
-* [3.2 (Bonn)](https://github.com/crousson/qgis-snaps/tree/3.2.2)
-* [3.0 (Girona)](https://github.com/crousson/qgis-snaps/tree/3.0.0)
-* [2.18 (Las Palmas)](https://github.com/crousson/qgis-snaps/tree/2.18.15)
-* [2.14 (Essen)](https://github.com/crousson/qgis-snaps/tree/2.14.22)
+* [3.4 (Madeira)](https://github.com/tramebleue/qgis-snaps/tree/3.4.3)
+* [3.2 (Bonn)](https://github.com/tramebleue/qgis-snaps/tree/3.2.2)
+* [3.0 (Girona)](https://github.com/tramebleue/qgis-snaps/tree/3.0.0)
+* [2.18 (Las Palmas)](https://github.com/tramebleue/qgis-snaps/tree/2.18.15)
+* [2.14 (Essen)](https://github.com/tramebleue/qgis-snaps/tree/2.14.22)
 
 ## Building the snap
 
