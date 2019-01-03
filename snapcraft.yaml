@@ -1,5 +1,5 @@
 name: qgis3
-version: 3.2.2
+version: 3.4.3
 summary: A Free and Open Source Geographic Information System
 description: |
   Create, edit, visualise, analyse and publish geospatial information.
@@ -26,7 +26,7 @@ apps:
 
 parts:
   qgis:
-    source: https://github.com/qgis/QGIS/archive/final-3_2_2.tar.gz
+    source: https://github.com/qgis/QGIS/archive/final-3_4_3.tar.gz
     plugin: cmake
     after: [python-deps, desktop-qt5]
     configflags:
@@ -58,6 +58,7 @@ parts:
       - libqt5opengl5-dev
       - libqt5scintilla2-dev
       - libqt5sql5-sqlite
+      - libqt5serialport5-dev
       - libqt5svg5-dev
       - libqt5webkit5-dev
       - libqt5xmlpatterns5-dev
@@ -71,6 +72,7 @@ parts:
       - lighttpd
       - locales
       - ninja-build
+      - opencl-headers
       - pkg-config
       - poppler-utils
       - pyqt5-dev
@@ -101,10 +103,13 @@ parts:
       - libqt5keychain0
       - libqt5positioning5
       - libqt5positioning5-plugins
+      - libqt5quickwidgets5
       - libqt5sql5-sqlite
+      - libqt5serialport5
       - libqwt-qt5-6
       - libspatialindex4v5
       - libzip4
+      - ocl-icd-libopencl1
       - saga
       - python-saga
 
