@@ -17,6 +17,7 @@ apps:
     plugs: [home, network, unity7]
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
   shell:
     command: ipython
     plugs: [home, network, unity7]
@@ -93,12 +94,14 @@ parts:
       - xfonts-scalable
       - xvfb
     stage-packages:
+      - grass-core
       - libatlas3-base
       - libdb5.3
       - libgsl2
       - libqca-qt5-2
       - libqca-qt5-2-plugins
       - libqca2-plugin-ossl
+      - libqgisgrass7-3.4.3
       - libqt5concurrent5
       - libqt5keychain0
       - libqt5positioning5
