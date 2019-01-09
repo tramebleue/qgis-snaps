@@ -18,11 +18,13 @@ apps:
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
+      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
   shell:
     command: ipython
     plugs: [home, network, unity7]
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
 
 parts:
@@ -44,7 +46,6 @@ parts:
       - doxygen
       - expect
       - flex
-      - gdal-bin
       - graphviz
       - grass-dev
       - libexpat1-dev
@@ -94,6 +95,7 @@ parts:
       - xfonts-scalable
       - xvfb
     stage-packages:
+      - gdal-bin
       - grass-core
       - libatlas3-base
       - libdb5.3
@@ -153,6 +155,7 @@ parts:
       - python3-pyqt5.qtsvg
       - python3-pyqt5.qtwebkit
       - python3-requests
+      - python3-scipy
       - python3-sip
       - python3-sip-dev
       - python3-six
