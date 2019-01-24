@@ -7,7 +7,7 @@ QGIS is a Geographic Information System (GIS) that supports vector, raster & dat
 
 Tagged versions of the Snapcraft configuration file :
 
-* [3.4 (Madeira)](https://github.com/tramebleue/qgis-snaps/tree/3.4.3)
+* [3.4 (Madeira)](https://github.com/tramebleue/qgis-snaps)
 * [3.2 (Bonn)](https://github.com/tramebleue/qgis-snaps/tree/3.2.2)
 * [3.0 (Girona)](https://github.com/tramebleue/qgis-snaps/tree/3.0.0)
 * [2.18 (Las Palmas)](https://github.com/tramebleue/qgis-snaps/tree/2.18.15)
