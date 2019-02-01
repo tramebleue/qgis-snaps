@@ -7,6 +7,7 @@ description: |
   interface. It supports a number of raster and vector data formats, with new
   support easily added using the plugin architectur
 
+base: core18
 grade: devel
 confinement: strict
 architectures: [amd64]
@@ -14,12 +15,26 @@ architectures: [amd64]
 apps:
   qgis3:
     command: desktop-launch qgis
-    plugs: [home, network, unity7]
+    plugs:
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - alsa
+      - browser-support
+      - cups-control
+      - gsettings
+      - pulseaudio
+      - screen-inhibit-control
+      - home
+      - network
+      - opengl
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
       R_ENVIRON: $SNAP/usr/lib/R/etc/Renviron
+      EDITOR: vim
   ipython:
     command: ipython
     plugs: [home, network, unity7]
@@ -28,14 +43,16 @@ apps:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
       R_ENVIRON: $SNAP/usr/lib/R/etc/Renviron
+      EDITOR: vim
   R:
-    command: R
+    command: usr/local/bin/R
     plugs: [home, network, unity7]
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
       R_ENVIRON: $SNAP/usr/lib/R/etc/Renviron
+      EDITOR: vim
 
 parts:
   qgis:
@@ -132,8 +149,8 @@ parts:
       snapcraftctl prime
       set -ex
       cd usr/lib
-      ln -sf atlas-base/atlas/libblas.so.3 libblas.so.3
-      ln -sf lapack/liblapack.so.3 liblapack.so.3
+      ln -sf x86_64-linux-gnu/atlas/libblas.so.3 libblas.so.3
+      ln -sf x86_64-linux-gnu/atlas/liblapack.so.3 liblapack.so.3
 
   python-deps:
     plugin: nil
@@ -167,6 +184,7 @@ parts:
       - python3-termcolor
       - python3-tz
       - python3-yaml
+      - libcap2
 
   gis-tools:
     plugin: nil
@@ -175,9 +193,17 @@ parts:
       - grass-core
       - python-saga
       - saga
+      - libbz2-1.0
+      - libncursesw5
+      - vim
+      - libacl1
+      - libattr1
 
   stats-tools:
-    plugin: nil
+    plugin: dump
+    source: ./scripts
+    organize:
+      start_r.sh: usr/local/bin/R
     stage-packages:
       - r-base
       - r-cran-ggplot2
