@@ -19,13 +19,23 @@ apps:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
-  shell:
+      R_ENVIRON: $SNAP/usr/lib/R/etc/Renviron
+  ipython:
     command: ipython
     plugs: [home, network, unity7]
     environment:
       GDAL_DATA: $SNAP/usr/share/gdal/2.2
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
+      R_ENVIRON: $SNAP/usr/lib/R/etc/Renviron
+  R:
+    command: R
+    plugs: [home, network, unity7]
+    environment:
+      GDAL_DATA: $SNAP/usr/share/gdal/2.2
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/grass74/lib
+      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt5/plugins
+      R_ENVIRON: $SNAP/usr/lib/R/etc/Renviron
 
 parts:
   qgis:
@@ -36,7 +46,7 @@ parts:
       - -DWITH_BINDINGS=TRUE
       - -DWITH_PY_COMPILE=FALSE
       - -DBINDINGS_GLOBAL_INSTALL=TRUE
-      - -DPYTHON_SITE_PACKAGES_DIR=/usr/lib/python3.5/dist-packages
+      - -DPYTHON_SITE_PACKAGES_DIR=/usr/lib/python3.6/dist-packages
       - -DENABLE_TESTS=FALSE
     build-packages:
       - bison
@@ -59,8 +69,8 @@ parts:
       - libqca-qt5-2-plugins
       - libqt5opengl5-dev
       - libqt5scintilla2-dev
-      - libqt5sql5-sqlite
       - libqt5serialport5-dev
+      - libqt5sql5-sqlite
       - libqt5svg5-dev
       - libqt5webkit5-dev
       - libqt5xmlpatterns5-dev
@@ -95,17 +105,15 @@ parts:
       - xfonts-scalable
       - xvfb
     stage-packages:
-      - gdal-bin
-      - grass-core
       - libatlas3-base
       - libdb5.3
-      - libgsl2
+      - libgsl23
       - libqca-qt5-2
       - libqca-qt5-2-plugins
-      - libqca2-plugin-ossl
+      - libqca2-plugins
       - libqgisgrass7-3.4.3
       - libqt5concurrent5
-      - libqt5keychain0
+      - libqt5keychain1
       - libqt5positioning5
       - libqt5positioning5-plugins
       - libqt5quickwidgets5
@@ -115,9 +123,6 @@ parts:
       - libspatialindex4v5
       - libzip4
       - ocl-icd-libopencl1
-      - saga
-      - python-saga
-
     organize:
       usr/lib/x86_64-linux-gnu/qca-qt5/crypto: usr/lib/x86_64-linux-gnu/qt5/plugins/crypto
     stage:
@@ -145,7 +150,7 @@ parts:
       - python3-mock
       - python3-nose2
       - python3-owslib
-      - python3-plotly
+      # - python3-plotly
       - python3-psycopg2
       - python3-pygments
       - python3-pyproj
@@ -163,8 +168,30 @@ parts:
       - python3-tz
       - python3-yaml
 
+  gis-tools:
+    plugin: nil
+    stage-packages:
+      - gdal-bin
+      - grass-core
+      - python-saga
+      - saga
+
+  stats-tools:
+    plugin: nil
+    stage-packages:
+      - r-base
+      - r-cran-ggplot2
+      - r-cran-msm
+      - r-cran-plyr
+      - r-cran-rcolorbrewer
+      - r-cran-sp
+
   python-shell:
     plugin: python
+    after: [qgis]
     python-version: python3
     python-packages:
       - ipython
+      - mistune
+      - pip
+      - plotly==3.3

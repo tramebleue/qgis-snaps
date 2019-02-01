@@ -23,6 +23,6 @@ For a clean, system independent build it is recommanden to use the official `sna
 Using Docker, you’ll map the current directory into the container and then build the snap from that same directory:
 
 ```
-docker build -t snapcraft-ubuntugis .
-docker run -v $PWD:$PWD -w $PWD snapcraft-ubuntugis bash -c "apt update && apt upgrade -y && snapcraft clean && snapcraft"
+docker build -t snapcraft-qgis-ubuntu .
+docker run -v $PWD:$PWD -w $PWD snapcraft-qgis-ubuntu bash -c "apt update && apt upgrade -y && snapcraft clean && snapcraft"
 ```
